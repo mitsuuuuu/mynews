@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Profile;
+//以下を追記(Laravel17課題)
+use App\Profileupdate;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -65,6 +68,12 @@ class ProfileController extends Controller
       
       $profile->fill($profile_form)->save();
       
-      return redirect('admin/profile');
+        // 以下を追記(Laravel17課題)
+        $profileupdate = new Profileupdate();
+        $profileupdate->profile_id = $profile_id->id;
+        $profileupdate->edited_at = Carbon::now();
+        $profileupdate->save();
+      
+      return redirect('admin/profile/');
     }
 }

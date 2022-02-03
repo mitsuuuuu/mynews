@@ -46,6 +46,19 @@
                         </div>
                     </div>
                 </form>
+                {{-- 以下を追記(Laravel17課題)　--}}
+                <div class="row mt-5">
+                    <div class="col-md-4 mx-auto">
+                        <h2>編集履歴</h2>
+                        <ul class="list-group">
+                            @if ($profile_form->profileupdates != NULL)
+                                @foreach ($profile_form->profileupdates as $profileupdate)
+                                    <li class="list-group-item">{{ $profileupdate->edited_at }}</li>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
